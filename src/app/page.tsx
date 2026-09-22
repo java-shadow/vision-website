@@ -1,3 +1,4 @@
+"use client";
 import React, { useState, useEffect } from 'react';
 import {
   Eye,
@@ -41,11 +42,13 @@ export default function App() {
   const [downloadToast, setDownloadToast] = useState<string | null>(null);
 
   // Live timer for simulator status
-  const [currentTime, setCurrentTime] = useState(
-    new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
-  );
+  // Initialize with empty string to prevent Next.js SSR hydration mismatch
+  const [currentTime, setCurrentTime] = useState<string>('--:--');
 
   useEffect(() => {
+    // Set the actual time once mounted on the client
+    setCurrentTime(new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }));
+
     const timer = setInterval(() => {
       setCurrentTime(new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }));
     }, 1000);
