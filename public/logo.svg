@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="50 15 400 245" width="100%" height="100%">
+  <defs>
+    <!-- Outer Eye Glow Gradient -->
+    <linearGradient id="eyeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2563eb" />
+      <stop offset="50%" stop-color="#3b82f6" />
+      <stop offset="100%" stop-color="#38bdf8" />
+    </linearGradient>
+
+    <!-- Inner Eye Depth Gradient -->
+    <linearGradient id="innerDepth" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#020617" />
+      <stop offset="60%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#1e3a8a" />
+    </linearGradient>
+
+    <!-- Center Orb Gradient -->
+    <radialGradient id="pupilGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#1d4ed8" />
+      <stop offset="70%" stop-color="#091e42" />
+      <stop offset="100%" stop-color="#020617" />
+    </radialGradient>
+
+    <!-- Figure / Rising Arrow Gradient -->
+    <linearGradient id="arrowGrad" x1="30%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#2563eb" />
+      <stop offset="45%" stop-color="#38bdf8" />
+      <stop offset="100%" stop-color="#67e8f9" />
+    </linearGradient>
+
+    <!-- Iris Rim Highlight -->
+    <linearGradient id="rimGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0284c7" />
+      <stop offset="100%" stop-color="#38bdf8" />
+    </linearGradient>
+  </defs>
+
+  <!-- Outer Eye Shape -->
+  <path d="M 60 160 C 150 70, 350 70, 440 160 C 350 250, 150 250, 60 160 Z" 
+        fill="url(#eyeGrad)" />
+
+  <!-- Inner Eye Cutout / Depth -->
+  <path d="M 85 160 C 160 90, 340 90, 415 160 C 340 230, 160 230, 85 160 Z" 
+        fill="url(#innerDepth)" />
+
+  <!-- Center Circular Iris / Socket -->
+  <circle cx="250" cy="160" r="75" fill="none" stroke="url(#rimGrad)" stroke-width="5" />
+  <circle cx="250" cy="160" r="72" fill="url(#pupilGrad)" />
+
+  <!-- Human Figure & Arrow Group -->
+  <g>
+    <!-- Figure Head -->
+    <circle cx="250" cy="135" r="14" fill="#38bdf8" />
+
+    <!-- Figure Torso & Breakout Arrow -->
+    <path d="M 226 142 
+             C 236 155, 237 185, 246 220 
+             C 255 185, 256 155, 266 142 
+             C 258 148, 252 153, 246 160 
+             C 240 153, 234 148, 226 142 Z" 
+          fill="url(#arrowGrad)" />
+
+    <!-- Rising Arrow Shaft & Spearhead Breaking the Frame -->
+    <path d="M 246 175 
+             C 256 140, 275 90, 312 42 
+             L 300 40 
+             L 326 22 
+             L 328 54 
+             L 318 50 
+             C 285 95, 268 140, 256 175 Z" 
+          fill="url(#arrowGrad)" />
+  </g>
+</svg>
