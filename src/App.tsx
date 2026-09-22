@@ -32,13 +32,13 @@ import {
 } from 'lucide-react';
 
 export default function App() {
-  const [isCheckedIn, setIsCheckedIn] = useState(false);
-  const [checkInTime, setCheckInTime] = useState(null);
-  const [phoneTab, setPhoneTab] = useState('home');
-  const [filterCategory, setFilterCategory] = useState('all');
-  const [showQrModal, setShowQrModal] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [downloadToast, setDownloadToast] = useState(null);
+  const [isCheckedIn, setIsCheckedIn] = useState<boolean>(false);
+  const [checkInTime, setCheckInTime] = useState<string | null>(null);
+  const [phoneTab, setPhoneTab] = useState<string>('home');
+  const [filterCategory, setFilterCategory] = useState<string>('all');
+  const [showQrModal, setShowQrModal] = useState<boolean>(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
+  const [downloadToast, setDownloadToast] = useState<string | null>(null);
 
   // Live timer for simulator status
   const [currentTime, setCurrentTime] = useState(
@@ -52,14 +52,26 @@ export default function App() {
     return () => clearInterval(timer);
   }, []);
 
-  const triggerDownloadNotice = (platform) => {
+  const triggerDownloadNotice = (platform: string) => {
     setDownloadToast(`Starting download for Vision App (${platform})...`);
     setTimeout(() => {
       setDownloadToast(null);
     }, 3500);
   };
 
-  const modules = [
+  interface AppModule {
+    id: string;
+    title: string;
+    subtitle: string;
+    icon: React.ElementType;
+    color: string;
+    bgColor: string;
+    borderColor: string;
+    category: string;
+    description: string;
+  }
+
+  const modules: AppModule[] = [
     {
       id: 'attendance',
       title: 'Attendance',
