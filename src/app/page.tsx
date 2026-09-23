@@ -627,7 +627,6 @@ export default function App() {
                     {/* Center Plus Button from Screenshot */}
                     <div className="-mt-5">
                       <button
-                        onClick={() => triggerDownloadNotice('QR Scanner')}
                         className="w-11 h-11 rounded-full bg-gradient-to-tr from-cyan-400 to-blue-500 text-slate-950 flex items-center justify-center shadow-lg shadow-cyan-500/40 active:scale-95 transition-transform"
                       >
                         <span className="text-xl font-bold leading-none">+</span>
@@ -697,7 +696,7 @@ export default function App() {
       <section id="features" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-semibold uppercase tracking-wider mb-4">
-            Built for Modern Workforces
+            Pillars • Built for Modern Workforces
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
             Everything your team needs, right inside Vision.
@@ -785,10 +784,18 @@ export default function App() {
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
           <div>
             <div className="text-xs font-semibold text-cyan-400 uppercase tracking-wider mb-2">
-              Full Module Directory
+              App Modules • Full Directory
             </div>
             <h2 className="text-2xl sm:text-3xl font-extrabold text-white">
-              Every Quick Action inside the Vision App
+              {filterCategory === 'all'
+                ? 'Every Quick Action inside the Vision App'
+                : `${[
+                    { label: 'All Modules', key: 'all' },
+                    { label: 'Attendance', key: 'attendance' },
+                    { label: 'HR & Leaves', key: 'hr' },
+                    { label: 'Finance', key: 'finance' },
+                    { label: 'Support', key: 'support' }
+                  ].find((t) => t.key === filterCategory)?.label} Modules`}
             </h2>
           </div>
 
@@ -860,8 +867,8 @@ export default function App() {
           <div className="absolute top-0 right-0 w-80 h-80 bg-cyan-500/5 blur-3xl rounded-full pointer-events-none"></div>
 
           <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-semibold mb-4">
-              <ShieldCheck className="w-4 h-4" /> Enterprise Grade Integrity
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-semibold uppercase tracking-wider mb-4">
+              <ShieldCheck className="w-4 h-4" /> Security & Geo • Enterprise Grade Integrity
             </div>
             <h2 className="text-2xl sm:text-3xl font-extrabold text-white mb-4">
               Secure, Private & Restricted to Authorized Company Staff
