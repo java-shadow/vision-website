@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: 'Vision',
   description: 'Octavision Internal Portal',
   icons: {
-    icon: '/logo.svg?v=2',
+    icon: '/logo2.svg?v=3',
   },
 };
 

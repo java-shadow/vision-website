@@ -56,7 +56,7 @@ export default function App() {
   }, []);
 
   const triggerDownloadNotice = (platform: string) => {
-    setDownloadToast(`Starting download for Vision App (${platform})...`);
+    setDownloadToast(`Coming soon! The ${platform} link will be available in the future.`);
     setTimeout(() => {
       setDownloadToast(null);
     }, 3500);
@@ -265,16 +265,12 @@ export default function App() {
       <nav className="sticky top-0 z-40 bg-[#070b12]/80 backdrop-blur-xl border-b border-slate-800/80 px-4 sm:px-8 py-3.5 transition-all">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-1">
-            <div className="w-14 h-14 flex items-center justify-center relative">
-              <img src="/logo.png" alt="Octavision Logo" className="absolute w-[180%] max-w-none h-[180%] object-contain drop-shadow-[0_0_8px_rgba(6,182,212,0.5)]" />
+            <div className="w-10 h-10 flex items-center justify-center relative">
+              <img src="/logo2.svg" alt="Vision Logo" className="w-full h-full object-contain drop-shadow-[0_0_8px_rgba(6,182,212,0.5)]" />
             </div>
-            <div className="flex flex-col justify-center z-10">
-              <span className="text-2xl font-extrabold tracking-tight text-white flex items-center gap-1.5 leading-none mb-1">
+            <div className="z-10 ml-2">
+              <span className="text-2xl font-extrabold tracking-tight text-white leading-none">
                 Vision
-                <span className="inline-block w-2 h-2 rounded-full bg-cyan-400"></span>
-              </span>
-              <span className="hidden sm:block text-[11px] font-semibold text-slate-400 tracking-wider uppercase leading-none">
-                By Octavision
               </span>
             </div>
           </div>
@@ -286,17 +282,17 @@ export default function App() {
             <a href="#modules" className="hover:text-cyan-400 transition-colors">
               App Modules
             </a>
-            <a href="#simulator" className="hover:text-cyan-400 transition-colors">
-              Live Preview
-            </a>
             <a href="#security" className="hover:text-cyan-400 transition-colors">
               Security & Geo
+            </a>
+            <a href="#contact" className="hover:text-cyan-400 transition-colors">
+              Contact Us
             </a>
           </div>
 
           <div className="hidden md:flex items-center gap-3">
             <button
-              onClick={() => setShowQrModal(true)}
+              onClick={() => triggerDownloadNotice('QR Scanner')}
               className="flex items-center gap-2 px-3.5 py-2 rounded-lg bg-slate-900 border border-slate-700/80 text-xs font-semibold text-slate-300 hover:text-white hover:border-slate-500 transition-all"
             >
               <QrCode className="w-4 h-4 text-cyan-400" />
@@ -337,18 +333,18 @@ export default function App() {
               App Modules
             </a>
             <a
-              href="#simulator"
-              onClick={() => setMobileMenuOpen(false)}
-              className="px-2 py-1.5 text-sm text-slate-300 hover:text-white"
-            >
-              Live Preview
-            </a>
-            <a
               href="#download"
               onClick={() => setMobileMenuOpen(false)}
-              className="px-2 py-2 rounded-lg bg-emerald-500 text-slate-950 font-bold text-sm text-center"
+              className="px-2 py-2 rounded-lg bg-emerald-500 text-slate-950 font-bold text-sm text-center mb-1"
             >
               Download App
+            </a>
+            <a
+              href="#contact"
+              onClick={() => setMobileMenuOpen(false)}
+              className="px-2 py-2 rounded-lg border border-cyan-500/50 text-cyan-400 font-bold text-sm text-center hover:bg-cyan-500/10"
+            >
+              Contact Us
             </a>
           </div>
         )}
@@ -407,7 +403,7 @@ export default function App() {
               </button>
 
               <button
-                onClick={() => setShowQrModal(true)}
+                onClick={() => triggerDownloadNotice('QR Scanner')}
                 className="p-3.5 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-slate-600 text-cyan-400 hover:text-white transition-all"
                 title="Scan QR to download"
               >
@@ -461,10 +457,10 @@ export default function App() {
                   {/* App Bar (Vision Logo + Avatar) */}
                   <div className="px-5 py-3 flex items-center justify-between">
                     <div className="flex items-center gap-1">
-                      <div className="w-10 h-10 flex items-center justify-center relative">
-                        <img src="/logo.png" alt="Octavision Logo" className="absolute w-[180%] max-w-none h-[180%] object-contain drop-shadow-[0_0_5px_rgba(6,182,212,0.4)]" />
+                      <div className="w-8 h-8 flex items-center justify-center relative">
+                        <img src="/logo2.svg" alt="Vision Logo" className="w-full h-full object-contain drop-shadow-[0_0_5px_rgba(6,182,212,0.4)]" />
                       </div>
-                      <span className="text-xl font-bold text-white tracking-tight leading-none z-10">Vision</span>
+                      <span className="text-xl font-bold text-white tracking-tight leading-none z-10 ml-1">Vision</span>
                     </div>
 
                     <div className="flex items-center gap-3">
@@ -631,7 +627,7 @@ export default function App() {
                     {/* Center Plus Button from Screenshot */}
                     <div className="-mt-5">
                       <button
-                        onClick={() => setShowQrModal(true)}
+                        onClick={() => triggerDownloadNotice('QR Scanner')}
                         className="w-11 h-11 rounded-full bg-gradient-to-tr from-cyan-400 to-blue-500 text-slate-950 flex items-center justify-center shadow-lg shadow-cyan-500/40 active:scale-95 transition-transform"
                       >
                         <span className="text-xl font-bold leading-none">+</span>
@@ -932,7 +928,7 @@ export default function App() {
             </button>
 
             <button
-              onClick={() => setShowQrModal(true)}
+              onClick={() => triggerDownloadNotice('QR Scanner')}
               className="flex items-center gap-2 px-5 py-4 rounded-xl bg-slate-900 border border-slate-800 text-cyan-400 hover:text-white transition-all text-sm font-semibold"
             >
               <QrCode className="w-5 h-5" />
@@ -971,10 +967,10 @@ export default function App() {
       <footer className="border-t border-slate-900 bg-[#04070d] py-12 px-4 sm:px-6 lg:px-8 text-slate-500 text-xs">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-1">
-            <div className="w-10 h-10 flex items-center justify-center relative">
-              <img src="/logo.png" alt="Octavision Logo" className="absolute w-[180%] max-w-none h-[180%] object-contain" />
+            <div className="w-8 h-8 flex items-center justify-center relative">
+              <img src="/logo2.svg" alt="Vision Logo" className="w-full h-full object-contain" />
             </div>
-            <span className="text-base font-bold text-slate-300 leading-none z-10">Vision by Octavision</span>
+            <span className="text-base font-bold text-slate-300 leading-none z-10 ml-1">Vision by Octavision</span>
           </div>
 
           <div className="flex flex-wrap items-center gap-6">
@@ -984,7 +980,7 @@ export default function App() {
             <a href="#modules" className="hover:text-slate-300 transition-colors">
               Modules
             </a>
-            <button onClick={() => setShowQrModal(true)} className="hover:text-slate-300 transition-colors">
+            <button onClick={() => triggerDownloadNotice('QR Scanner')} className="hover:text-slate-300 transition-colors">
               QR Code
             </button>
             <a href="#download" className="hover:text-slate-300 transition-colors">
