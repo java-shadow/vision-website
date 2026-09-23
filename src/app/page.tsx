@@ -269,7 +269,7 @@ export default function App() {
               <img src="/logo2.svg" alt="Vision Logo" className="w-full h-full object-contain drop-shadow-[0_0_8px_rgba(6,182,212,0.5)]" />
             </div>
             <div className="z-10 ml-2">
-              <span className="text-xl font-extrabold tracking-tight text-slate-900 leading-none">
+              <span className="text-xl font-extrabold tracking-tight text-slate-800 leading-none">
                 Vision
               </span>
             </div>
@@ -460,7 +460,7 @@ export default function App() {
                       <div className="w-8 h-8 flex items-center justify-center relative">
                         <img src="/logo2.svg" alt="Vision Logo" className="w-full h-full object-contain drop-shadow-[0_0_5px_rgba(6,182,212,0.4)]" />
                       </div>
-                      <span className="text-xl font-bold text-slate-900 tracking-tight leading-none z-10 ml-1">Vision</span>
+                      <span className="text-l font-bold text-slate-900 tracking-tight leading-none z-10 ml-1">Vision</span>
                     </div>
 
                     <div className="flex items-center gap-3">
