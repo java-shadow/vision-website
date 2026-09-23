@@ -269,7 +269,7 @@ export default function App() {
               <img src="/logo2.svg" alt="Vision Logo" className="w-full h-full object-contain drop-shadow-[0_0_8px_rgba(6,182,212,0.5)]" />
             </div>
             <div className="z-10 ml-2">
-              <span className="text-2xl font-extrabold tracking-tight text-white leading-none">
+              <span className="text-xl font-extrabold tracking-tight text-white leading-none">
                 Vision
               </span>
             </div>
