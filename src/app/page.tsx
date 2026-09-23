@@ -485,7 +485,7 @@ export default function App() {
                     </div>
 
                     {/* Interactive Check In / Out Card (Replicating Screenshot #1000182922) */}
-                    <div className="bg-white border border-slate-200 shadow-sm rounded-2xl p-4 shadow-sm relative overflow-hidden">
+                    <div className="bg-white border border-slate-200 shadow-sm rounded-2xl p-4 shadow-sm relative overflow-hidden transition-all duration-300 hover:scale-[1.02] hover:shadow-xl cursor-pointer">
                       <div className="flex items-center justify-between mb-3">
                         <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-slate-100/80 border border-slate-300/60 text-[11px] text-slate-600 font-medium">
                           <span
@@ -530,7 +530,7 @@ export default function App() {
 
                     {/* Screenshot Quick Action Tiles Preview */}
                     <div className="grid grid-cols-2 gap-2.5">
-                      <div className="bg-white border border-slate-200 shadow-sm rounded-xl p-3 flex flex-col justify-between hover:border-slate-300 transition-all">
+                      <div className="bg-white border border-slate-200 shadow-sm rounded-xl p-3 flex flex-col justify-between transition-all duration-300 hover:border-cyan-300 hover:-translate-y-1 hover:shadow-lg cursor-pointer">
                         <div className="w-8 h-8 rounded-lg bg-teal-500/10 text-teal-400 flex items-center justify-center mb-2">
                           <Calendar className="w-4 h-4" />
                         </div>
@@ -540,7 +540,7 @@ export default function App() {
                         </div>
                       </div>
 
-                      <div className="bg-white border border-slate-200 shadow-sm rounded-xl p-3 flex flex-col justify-between hover:border-slate-300 transition-all">
+                      <div className="bg-white border border-slate-200 shadow-sm rounded-xl p-3 flex flex-col justify-between transition-all duration-300 hover:border-cyan-300 hover:-translate-y-1 hover:shadow-lg cursor-pointer">
                         <div className="w-8 h-8 rounded-lg bg-amber-500/10 text-amber-600 flex items-center justify-center mb-2">
                           <Sun className="w-4 h-4" />
                         </div>
@@ -550,7 +550,7 @@ export default function App() {
                         </div>
                       </div>
 
-                      <div className="bg-white border border-slate-200 shadow-sm rounded-xl p-3 flex flex-col justify-between hover:border-slate-300 transition-all">
+                      <div className="bg-white border border-slate-200 shadow-sm rounded-xl p-3 flex flex-col justify-between transition-all duration-300 hover:border-cyan-300 hover:-translate-y-1 hover:shadow-lg cursor-pointer">
                         <div className="w-8 h-8 rounded-lg bg-purple-50 text-purple-600 flex items-center justify-center mb-2">
                           <ArrowRight className="w-4 h-4" />
                         </div>
@@ -560,7 +560,7 @@ export default function App() {
                         </div>
                       </div>
 
-                      <div className="bg-white border border-slate-200 shadow-sm rounded-xl p-3 flex flex-col justify-between hover:border-slate-300 transition-all">
+                      <div className="bg-white border border-slate-200 shadow-sm rounded-xl p-3 flex flex-col justify-between transition-all duration-300 hover:border-cyan-300 hover:-translate-y-1 hover:shadow-lg cursor-pointer">
                         <div className="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center mb-2">
                           <FileCheck className="w-4 h-4" />
                         </div>
@@ -666,25 +666,25 @@ export default function App() {
       {}
       <section className="border-y border-slate-200/80 bg-white/60 py-10 px-4 sm:px-6">
         <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-          <div className="p-4 rounded-xl bg-white border border-slate-200/60">
+          <div className="p-4 rounded-xl bg-white border border-slate-200/60 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-emerald-300 cursor-pointer">
             <div className="text-3xl font-extrabold text-emerald-600 tracking-tight">99.8%</div>
             <div className="text-xs font-semibold text-slate-400 mt-1">Punch Accuracy</div>
             <div className="text-[11px] text-slate-400 mt-0.5">Zero location spoofing</div>
           </div>
 
-          <div className="p-4 rounded-xl bg-white border border-slate-200/60">
+          <div className="p-4 rounded-xl bg-white border border-slate-200/60 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-emerald-300 cursor-pointer">
             <div className="text-3xl font-extrabold text-cyan-600 tracking-tight">&lt; 3 Sec</div>
             <div className="text-xs font-semibold text-slate-400 mt-1">Biometric Verification</div>
             <div className="text-[11px] text-slate-400 mt-0.5">Quick AI face verification</div>
           </div>
 
-          <div className="p-4 rounded-xl bg-white border border-slate-200/60">
+          <div className="p-4 rounded-xl bg-white border border-slate-200/60 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-emerald-300 cursor-pointer">
             <div className="text-3xl font-extrabold text-purple-600 tracking-tight">100%</div>
             <div className="text-xs font-semibold text-slate-400 mt-1">Paperless Operations</div>
             <div className="text-[11px] text-slate-400 mt-0.5">Leaves, comp off & claims</div>
           </div>
 
-          <div className="p-4 rounded-xl bg-white border border-slate-200/60">
+          <div className="p-4 rounded-xl bg-white border border-slate-200/60 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-emerald-300 cursor-pointer">
             <div className="text-3xl font-extrabold text-teal-400 tracking-tight">v2.4</div>
             <div className="text-xs font-semibold text-slate-400 mt-1">Stable Release</div>
             <div className="text-[11px] text-slate-400 mt-0.5">Encrypted internal API</div>
@@ -709,7 +709,7 @@ export default function App() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Card 1 */}
-          <div className="relative group bg-white border border-slate-200 hover:border-cyan-500/40 rounded-2xl p-7 transition-all duration-300 hover:-translate-y-1 shadow-lg">
+          <div className="relative group bg-white border border-slate-200 hover:border-cyan-500/40 hover:bg-cyan-50/50 rounded-2xl p-7 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl cursor-pointer">
             <div className="w-12 h-12 rounded-xl bg-cyan-50 text-cyan-600 flex items-center justify-center mb-6 ring-1 ring-cyan-500/20 group-hover:scale-110 transition-transform">
               <ScanFace className="w-6 h-6" />
             </div>
@@ -732,7 +732,7 @@ export default function App() {
           </div>
 
           {/* Card 2 */}
-          <div className="relative group bg-white border border-slate-200 hover:border-purple-500/40 rounded-2xl p-7 transition-all duration-300 hover:-translate-y-1 shadow-lg">
+          <div className="relative group bg-white border border-slate-200 hover:border-purple-500/40 hover:bg-purple-50/50 rounded-2xl p-7 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl cursor-pointer">
             <div className="w-12 h-12 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center mb-6 ring-1 ring-purple-500/20 group-hover:scale-110 transition-transform">
               <Calendar className="w-6 h-6" />
             </div>
@@ -755,7 +755,7 @@ export default function App() {
           </div>
 
           {/* Card 3 */}
-          <div className="relative group bg-white border border-slate-200 hover:border-emerald-500/40 rounded-2xl p-7 transition-all duration-300 hover:-translate-y-1 shadow-lg">
+          <div className="relative group bg-white border border-slate-200 hover:border-emerald-500/40 hover:bg-emerald-50/50 rounded-2xl p-7 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl cursor-pointer">
             <div className="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-6 ring-1 ring-emerald-500/20 group-hover:scale-110 transition-transform">
               <CreditCard className="w-6 h-6" />
             </div>
@@ -829,7 +829,7 @@ export default function App() {
             return (
               <div
                 key={mod.id}
-                className="bg-white border border-slate-200/80 hover:border-slate-300 rounded-xl p-5 flex flex-col justify-between transition-all hover:bg-slate-50 group"
+                className="bg-white border border-slate-200/80 rounded-xl p-5 flex flex-col justify-between transition-all duration-300 hover:bg-slate-50 hover:-translate-y-1.5 hover:shadow-xl hover:border-cyan-300 cursor-pointer group"
               >
                 <div>
                   <div className="flex items-center justify-between mb-4">
@@ -958,11 +958,11 @@ export default function App() {
         <div className="max-w-4xl mx-auto">
           <h2 className="text-xl font-bold text-slate-900 mb-6">Need Assistance? Contact Us</h2>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6 text-slate-600">
-            <div className="flex items-center gap-3 bg-white px-6 py-4 rounded-2xl border border-slate-200/80 shadow-md hover:border-cyan-500/30 transition-all">
+            <div className="flex items-center gap-3 bg-white px-6 py-4 rounded-2xl border border-slate-200/80 shadow-md hover:border-cyan-300 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer">
               <Mail className="w-5 h-5 text-cyan-600" />
               <a href="mailto:info@octavision.in" className="font-medium hover:text-slate-900 transition-colors tracking-wide">info@octavision.in</a>
             </div>
-            <div className="flex items-center gap-3 bg-white px-6 py-4 rounded-2xl border border-slate-200/80 shadow-md hover:border-emerald-500/30 transition-all">
+            <div className="flex items-center gap-3 bg-white px-6 py-4 rounded-2xl border border-slate-200/80 shadow-md hover:border-emerald-300 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer">
               <Phone className="w-5 h-5 text-emerald-600" />
               <a href="tel:+918527848873" className="font-medium hover:text-slate-900 transition-colors tracking-wide">+91 8527848873</a>
             </div>
