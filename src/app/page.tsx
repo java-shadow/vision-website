@@ -977,7 +977,7 @@ export default function App() {
             <div className="w-8 h-8 flex items-center justify-center relative">
               <img src="/logo2.svg" alt="Vision Logo" className="w-full h-full object-contain" />
             </div>
-            <span className="text-base font-bold text-slate-600 leading-none z-10 ml-1">Vision by Octavision</span>
+            <span className="text-base font-bold text-slate-400 leading-none z-10 ml-1">Vision </span>
           </div>
 
           <div className="flex flex-wrap items-center gap-6">
