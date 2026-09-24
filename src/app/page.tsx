@@ -265,10 +265,10 @@ export default function App() {
       <nav className="sticky top-0 z-40 bg-slate-50/80 backdrop-blur-xl border-b border-slate-200/80 px-4 sm:px-8 py-3.5 transition-all">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-1">
-            <div className="w-10 h-10 flex items-center justify-center relative">
+            <div className="w-10 h-10 flex items-center justify-center relative -mt-2">
               <img src="/logo2.svg" alt="Vision Logo" className="w-full h-full object-contain drop-shadow-[0_0_8px_rgba(6,182,212,0.5)]" />
             </div>
-            <div className="z-10 ml-2">
+            <div className="z-10 ml-2 mt-1">
               <span className="text-xl font-extrabold tracking-tight text-slate-800 leading-none">
                 Vision
               </span>
@@ -457,7 +457,7 @@ export default function App() {
                   {/* App Bar (Vision Logo + Avatar) */}
                   <div className="px-5 py-3 flex items-center justify-between">
                     <div className="flex items-center gap-1">
-                      <div className="w-8 h-8 flex items-center justify-center relative">
+                      <div className="w-8 h-8 flex items-center justify-center relative -mt-2">
                         <img src="/logo2.svg" alt="Vision Logo" className="w-full h-full object-contain drop-shadow-[0_0_5px_rgba(6,182,212,0.4)]" />
                       </div>
                       <span className="text-l font-bold text-slate-900 tracking-tight leading-none z-10 ml-1">Vision</span>
@@ -974,7 +974,7 @@ export default function App() {
       <footer className="border-t border-slate-200 bg-slate-50 py-12 px-4 sm:px-6 lg:px-8 text-slate-400 text-xs">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-1">
-            <div className="w-8 h-8 flex items-center justify-center relative">
+            <div className="w-8 h-8 flex items-center justify-center relative -mt-2">
               <img src="/logo2.svg" alt="Vision Logo" className="w-full h-full object-contain" />
             </div>
             <span className="text-base font-bold text-slate-400 leading-none z-10 ml-1">Vision </span>
