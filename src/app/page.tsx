@@ -1026,10 +1026,13 @@ export default function App() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10">
             <button
               onClick={() => triggerDownloadNotice('Android APK')}
-              className="w-full sm:w-auto flex items-center justify-center gap-3 px-8 py-4 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 text-white font-extrabold text-sm hover:brightness-110 shadow-xl shadow-emerald-500/25 transition-all"
+              className="w-full sm:w-auto flex items-center justify-center gap-3 px-8 py-4 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 text-white font-extrabold text-sm hover:brightness-110 shadow-xl shadow-emerald-500/25 transition-all group relative overflow-hidden"
             >
-              <Download className="w-5 h-5" />
-              <span>Download Android APK (Direct)</span>
+              <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full animate-[shimmer_2.5s_linear_infinite]" />
+              <div className="relative z-10 flex items-center justify-center gap-3">
+                <Download className="w-5 h-5" />
+                <span>Download Android APK (Direct)</span>
+              </div>
             </button>
 
             <button
