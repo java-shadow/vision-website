@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   Eye,
   CheckCircle2,
@@ -31,6 +31,38 @@ import {
   Mail,
   Phone
 } from 'lucide-react';
+
+const RevealOnScroll = ({ children, delay = 0 }: { children: React.ReactNode, delay?: number }) => {
+  const [isVisible, setIsVisible] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => setIsVisible(true), delay);
+          observer.unobserve(entry.target);
+        }
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+    );
+    if (ref.current) observer.observe(ref.current);
+    return () => {
+      if (observer) observer.disconnect();
+    };
+  }, [delay]);
+
+  return (
+    <div
+      ref={ref}
+      className={`transition-all duration-1000 ease-out ${
+        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+      }`}
+    >
+      {children}
+    </div>
+  );
+};
 
 export default function App() {
   const [isCheckedIn, setIsCheckedIn] = useState<boolean>(false);
@@ -737,6 +769,7 @@ export default function App() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Card 1 */}
+          <RevealOnScroll delay={0}>
           <div className="relative group bg-white border border-slate-200 hover:border-cyan-500/40 hover:bg-cyan-50/50 rounded-2xl p-7 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl cursor-pointer">
             <div className="w-12 h-12 rounded-xl bg-cyan-50 text-cyan-600 flex items-center justify-center mb-6 ring-1 ring-cyan-500/20 group-hover:scale-110 transition-transform">
               <ScanFace className="w-6 h-6" />
@@ -758,8 +791,10 @@ export default function App() {
               </li>
             </ul>
           </div>
+          </RevealOnScroll>
 
           {/* Card 2 */}
+          <RevealOnScroll delay={150}>
           <div className="relative group bg-white border border-slate-200 hover:border-purple-500/40 hover:bg-purple-50/50 rounded-2xl p-7 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl cursor-pointer">
             <div className="w-12 h-12 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center mb-6 ring-1 ring-purple-500/20 group-hover:scale-110 transition-transform">
               <Calendar className="w-6 h-6" />
@@ -781,8 +816,10 @@ export default function App() {
               </li>
             </ul>
           </div>
+          </RevealOnScroll>
 
           {/* Card 3 */}
+          <RevealOnScroll delay={300}>
           <div className="relative group bg-white border border-slate-200 hover:border-emerald-500/40 hover:bg-emerald-50/50 rounded-2xl p-7 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl cursor-pointer">
             <div className="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-6 ring-1 ring-emerald-500/20 group-hover:scale-110 transition-transform">
               <CreditCard className="w-6 h-6" />
@@ -804,6 +841,7 @@ export default function App() {
               </li>
             </ul>
           </div>
+          </RevealOnScroll>
         </div>
       </section>
 
@@ -852,12 +890,12 @@ export default function App() {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-          {filteredModules.map((mod) => {
+          {filteredModules.map((mod, index) => {
             const Icon = mod.icon;
             return (
+              <RevealOnScroll key={mod.id} delay={(index % 4) * 100}>
               <div
-                key={mod.id}
-                className="bg-white border border-slate-200/80 rounded-xl p-5 flex flex-col justify-between transition-all duration-300 hover:bg-slate-50 hover:-translate-y-1.5 hover:shadow-xl hover:border-cyan-300 cursor-pointer group"
+                className="h-full bg-white border border-slate-200/80 rounded-xl p-5 flex flex-col justify-between transition-all duration-300 hover:bg-slate-50 hover:-translate-y-1.5 hover:shadow-xl hover:border-cyan-300 cursor-pointer group"
               >
                 <div>
                   <div className="flex items-center justify-between mb-4">
@@ -884,6 +922,7 @@ export default function App() {
                   </span>
                 </div>
               </div>
+              </RevealOnScroll>
             );
           })}
         </div>
