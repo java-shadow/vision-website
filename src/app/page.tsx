@@ -421,7 +421,7 @@ export default function App() {
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-br from-slate-900 via-slate-800 to-slate-500 tracking-tight leading-[1.1] mb-6 min-h-[140px] sm:min-h-[120px] lg:min-h-[150px]">
               Streamline <br className="hidden sm:block" />
-              <span key={wordIndex} className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-cyan-600 via-teal-500 to-emerald-500 animate-[fadeInUp_0.5s_ease-out]">
+              <span key={wordIndex} className="inline-block pb-2 pr-1 text-transparent bg-clip-text bg-gradient-to-r from-cyan-600 via-teal-500 to-emerald-500 animate-[fadeInUp_0.5s_ease-out]">
                 {rotatingWords[wordIndex]}
               </span>
               <br />
@@ -933,36 +933,47 @@ export default function App() {
         <div className="bg-gradient-to-r from-slate-50 via-white to-slate-50 border border-slate-200 shadow-md rounded-3xl p-8 sm:p-12 relative overflow-hidden">
           <div className="absolute top-0 right-0 w-80 h-80 bg-cyan-500/5 blur-3xl rounded-full pointer-events-none"></div>
 
-          <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-600 text-xs font-semibold uppercase tracking-wider mb-4">
-              <ShieldCheck className="w-4 h-4" /> Security & Geo • Enterprise Grade Integrity
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="max-w-xl z-10">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-600 text-xs font-semibold uppercase tracking-wider mb-4">
+                <ShieldCheck className="w-4 h-4" /> Security & Geo • Enterprise Grade Integrity
+              </div>
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-6 tracking-tight">
+                Secure, Private & Restricted to Authorized Company Staff
+              </h2>
+              <p className="text-base text-slate-500 leading-relaxed">
+                Vision utilizes mutual TLS, encrypted SQLite local data caches, and continuous mock-location detection.
+                Company personnel credentials and face biometric vectors are stored in strict compliance with enterprise
+                privacy frameworks.
+              </p>
             </div>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-4">
-              Secure, Private & Restricted to Authorized Company Staff
-            </h2>
-            <p className="text-sm sm:text-base text-slate-400 leading-relaxed mb-8">
-              Vision utilizes mutual TLS, encrypted SQLite local data caches, and continuous mock-location detection.
-              Company personnel credentials and face biometric vectors are stored in strict compliance with enterprise
-              privacy frameworks.
-            </p>
 
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
-              <div className="bg-slate-50/80 border border-slate-200 p-4 rounded-xl">
-                <Lock className="w-5 h-5 text-cyan-600 mb-2" />
-                <div className="font-bold text-slate-900 mb-1">AES-256 Bit Encryption</div>
-                <div className="text-slate-400">All data in transit and at rest is secured end-to-end.</div>
+            <div className="relative z-10 grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {/* Massive watermark shield */}
+              <ShieldCheck className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 text-emerald-500/5 -z-10 animate-pulse" style={{ animationDuration: '3s' }} />
+              
+              <div className="sm:col-span-2 bg-white/60 backdrop-blur-sm border border-slate-200/80 p-5 rounded-2xl hover:bg-white hover:border-cyan-300 hover:shadow-xl hover:shadow-cyan-500/10 hover:-translate-y-1 transition-all duration-300 group cursor-default">
+                <div className="w-10 h-10 rounded-xl bg-cyan-50 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform shadow-sm border border-cyan-100">
+                  <Lock className="w-5 h-5 text-cyan-600" />
+                </div>
+                <div className="font-bold text-slate-900 text-sm mb-1.5">AES-256 Bit Encryption</div>
+                <div className="text-slate-500 text-xs leading-relaxed">All data in transit and at rest is secured end-to-end to prevent packet interception.</div>
               </div>
 
-              <div className="bg-slate-50/80 border border-slate-200 p-4 rounded-xl">
-                <MapPin className="w-5 h-5 text-teal-400 mb-2" />
-                <div className="font-bold text-slate-900 mb-1">Anti-Spoof Geofence</div>
-                <div className="text-slate-400">Detects mock locations and VPN manipulation automatically.</div>
+              <div className="bg-white/60 backdrop-blur-sm border border-slate-200/80 p-5 rounded-2xl hover:bg-white hover:border-teal-300 hover:shadow-xl hover:shadow-teal-500/10 hover:-translate-y-1 transition-all duration-300 group cursor-default">
+                <div className="w-10 h-10 rounded-xl bg-teal-50 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform shadow-sm border border-teal-100">
+                  <MapPin className="w-5 h-5 text-teal-600" />
+                </div>
+                <div className="font-bold text-slate-900 text-sm mb-1.5">Anti-Spoof Geofence</div>
+                <div className="text-slate-500 text-xs leading-relaxed">Detects mock locations and VPN manipulation automatically.</div>
               </div>
 
-              <div className="bg-slate-50/80 border border-slate-200 p-4 rounded-xl">
-                <Award className="w-5 h-5 text-purple-600 mb-2" />
-                <div className="font-bold text-slate-900 mb-1">Role-Based Access</div>
-                <div className="text-slate-400">Employees, shift leads, and HR managers see only permitted views.</div>
+              <div className="bg-white/60 backdrop-blur-sm border border-slate-200/80 p-5 rounded-2xl hover:bg-white hover:border-purple-300 hover:shadow-xl hover:shadow-purple-500/10 hover:-translate-y-1 transition-all duration-300 group cursor-default">
+                <div className="w-10 h-10 rounded-xl bg-purple-50 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform shadow-sm border border-purple-100">
+                  <Award className="w-5 h-5 text-purple-600" />
+                </div>
+                <div className="font-bold text-slate-900 text-sm mb-1.5">Role-Based Access</div>
+                <div className="text-slate-500 text-xs leading-relaxed">Employees, shift leads, and HR managers see only permitted views.</div>
               </div>
             </div>
           </div>
