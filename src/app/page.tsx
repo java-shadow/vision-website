@@ -453,10 +453,9 @@ export default function App() {
 
               <button
                 onClick={() => triggerDownloadNotice('iOS App Store')}
-                className="w-full sm:w-auto flex items-center justify-center gap-3 px-6 py-3.5 rounded-xl bg-white border border-slate-300/80 hover:border-cyan-500/50 text-slate-900 font-medium text-sm hover:bg-slate-100/80 transition-all shadow-md group"
+                className="w-full sm:w-auto flex items-center justify-center px-6 py-3.5 rounded-xl bg-white border border-slate-300/80 hover:border-cyan-500/50 text-slate-900 font-medium text-sm hover:bg-slate-100/80 transition-all shadow-md group"
               >
-                <div className="w-5 h-5 flex items-center justify-center font-bold text-lg"></div>
-                <div className="text-left">
+                <div className="text-center sm:text-left">
                   <div className="text-[10px] text-slate-400 leading-tight uppercase tracking-wider">Download on</div>
                   <div className="text-sm font-semibold leading-none">Apple iOS Store</div>
                 </div>
@@ -753,15 +752,21 @@ export default function App() {
       </section>
 
       {}
-      <section id="features" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      <section id="features" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative">
+        {/* Soft Background Glow */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-64 bg-cyan-500/10 blur-[100px] rounded-full pointer-events-none -z-10"></div>
+        
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-50 border border-cyan-200 text-cyan-600 text-xs font-semibold uppercase tracking-wider mb-4">
-            Pillars • Built for Modern Workforces
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-cyan-200/60 shadow-lg shadow-cyan-500/5 text-cyan-600 text-xs font-bold uppercase tracking-wider mb-6">
+            <Sparkles className="w-4 h-4 text-cyan-500 animate-pulse" /> Pillars • Built for Modern Workforces
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-            Everything your team needs, right inside Vision.
+          <h2 className="text-4xl sm:text-5xl font-extrabold text-slate-900 tracking-tight leading-[1.15] mb-6">
+            Everything your team needs, right inside{' '}
+            <span className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 via-teal-400 to-emerald-500 pb-1">
+              Vision.
+            </span>
           </h2>
-          <p className="text-sm sm:text-base text-slate-400 mt-4 leading-relaxed">
+          <p className="text-base sm:text-lg text-slate-500 leading-relaxed max-w-2xl mx-auto">
             Eliminate traditional biometric wall-scanners, paper leave forms, and lost expense bills. Vision puts the
             full power of internal HR operations into every employee’s pocket.
           </p>
@@ -849,19 +854,31 @@ export default function App() {
       <section id="modules" className="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
           <div>
-            <div className="text-xs font-semibold text-cyan-600 uppercase tracking-wider mb-2">
-              App Modules • Full Directory
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-cyan-200/60 shadow-lg shadow-cyan-500/5 text-cyan-600 text-xs font-bold uppercase tracking-wider mb-2">
+              <Layers className="w-4 h-4 text-cyan-500" /> App Modules • Full Directory
             </div>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900">
-              {filterCategory === 'all'
-                ? 'Every Quick Action inside the Vision App'
-                : `${[
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mt-4">
+              {filterCategory === 'all' ? (
+                <>
+                  Every Quick Action inside the{' '}
+                  <span className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 via-teal-400 to-emerald-500 pb-1">
+                    Vision App.
+                  </span>
+                </>
+              ) : (
+                <>
+                  {[
                     { label: 'All Modules', key: 'all' },
                     { label: 'Attendance', key: 'attendance' },
                     { label: 'HR & Leaves', key: 'hr' },
                     { label: 'Finance', key: 'finance' },
                     { label: 'Support', key: 'support' }
-                  ].find((t) => t.key === filterCategory)?.label} Modules`}
+                  ].find((t) => t.key === filterCategory)?.label}{' '}
+                  <span className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 via-teal-400 to-emerald-500 pb-1">
+                    Modules.
+                  </span>
+                </>
+              )}
             </h2>
           </div>
 
@@ -981,16 +998,27 @@ export default function App() {
       </section>
 
       {}
-      <section id="download" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto text-center">
+      <section id="download" className="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto text-center relative">
+        {/* Soft Background Glow */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-3xl h-64 bg-cyan-500/10 blur-[100px] rounded-full pointer-events-none -z-10"></div>
+        
         <div className="max-w-3xl mx-auto">
-          <div className="w-14 h-14 rounded-2xl bg-gradient-to-tr from-cyan-400 to-blue-600 flex items-center justify-center mx-auto mb-6 text-white font-bold shadow-xl shadow-cyan-500/20">
-            <Smartphone className="w-7 h-7 text-white" />
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-cyan-200/60 shadow-lg shadow-cyan-500/5 text-cyan-600 text-xs font-bold uppercase tracking-wider mb-8">
+            <Download className="w-4 h-4 text-cyan-500 animate-bounce" /> Available on iOS & Android
+          </div>
+          
+          <div className="w-16 h-16 rounded-3xl bg-gradient-to-tr from-cyan-400 to-blue-600 flex items-center justify-center mx-auto mb-8 text-white font-bold shadow-2xl shadow-cyan-500/30 border border-white/20">
+            <Smartphone className="w-8 h-8 text-white" />
           </div>
 
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-4">
-            Get the Vision App on Your Phone Today
+          <h2 className="text-4xl sm:text-5xl font-extrabold text-slate-900 tracking-tight leading-[1.15] mb-6">
+            Get the{' '}
+            <span className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 via-teal-400 to-emerald-500 pb-1">
+              Vision App
+            </span>{' '}
+            on Your Phone Today.
           </h2>
-          <p className="text-slate-400 text-base mb-8 max-w-xl mx-auto">
+          <p className="text-base sm:text-lg text-slate-500 leading-relaxed mb-10 max-w-xl mx-auto">
             Ready to log your attendance, review leaves, and access payslips? Download the verified corporate package
             for your operating system below.
           </p>
@@ -1006,9 +1034,8 @@ export default function App() {
 
             <button
               onClick={() => triggerDownloadNotice('iOS TestFlight / Store')}
-              className="w-full sm:w-auto flex items-center justify-center gap-3 px-8 py-4 rounded-xl bg-white border border-slate-300 hover:border-slate-500 text-slate-900 font-bold text-sm transition-all"
+              className="w-full sm:w-auto flex items-center justify-center px-8 py-4 rounded-xl bg-white border border-slate-300 hover:border-slate-500 text-slate-900 font-bold text-sm transition-all shadow-md"
             >
-              <span className="text-lg"></span>
               <span>Download iOS App</span>
             </button>
 
