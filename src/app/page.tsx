@@ -40,7 +40,16 @@ export default function App() {
   const [showQrModal, setShowQrModal] = useState<boolean>(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
   const [downloadToast, setDownloadToast] = useState<string | null>(null);
+  
+  const rotatingWords = ["Attendance", "Leaves", "Payroll", "Workflows", "Shifts"];
+  const [wordIndex, setWordIndex] = useState(0);
 
+  useEffect(() => {
+    const wordTimer = setInterval(() => {
+      setWordIndex((prev) => (prev + 1) % rotatingWords.length);
+    }, 2500);
+    return () => clearInterval(wordTimer);
+  }, []);
   // Live timer for simulator status
   // Initialize with empty string to prevent Next.js SSR hydration mismatch
   const [currentTime, setCurrentTime] = useState<string>('--:--');
@@ -205,6 +214,16 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 selection:bg-cyan-500 selection:text-black font-sans antialiased overflow-x-hidden">
+      <style dangerouslySetInnerHTML={{ __html: `
+        @keyframes shimmer {
+          0% { transform: translateX(-100%); }
+          100% { transform: translateX(100%); }
+        }
+        @keyframes fadeInUp {
+          from { opacity: 0; transform: translateY(15px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+      `}} />
       {/* Dynamic Notification Toast */}
       {downloadToast && (
         <div className="fixed bottom-6 right-6 z-50 bg-white border border-cyan-500/40 text-slate-900 px-5 py-3.5 rounded-xl shadow-2xl flex items-center gap-3 backdrop-blur-md animate-bounce">
@@ -300,10 +319,13 @@ export default function App() {
             </button>
             <a
               href="#download"
-              className="flex items-center gap-2 px-4 py-2 rounded-lg bg-gradient-to-r from-emerald-500 to-teal-500 text-white font-bold text-xs hover:brightness-110 shadow-lg shadow-emerald-500/20 transition-all"
+              className="flex items-center gap-2 px-4 py-2 rounded-lg bg-gradient-to-r from-emerald-500 to-teal-500 text-white font-bold text-xs hover:brightness-110 shadow-lg shadow-emerald-500/30 transition-all relative overflow-hidden group"
             >
-              <Download className="w-4 h-4" />
-              Get Vision App
+              <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full animate-[shimmer_2.5s_linear_infinite]" />
+              <span className="relative z-10 flex items-center gap-2">
+                <Download className="w-4 h-4" />
+                Get Vision App
+              </span>
             </a>
           </div>
 
@@ -353,8 +375,9 @@ export default function App() {
       {}
       <section id="simulator" className="relative pt-12 pb-20 md:pt-20 md:pb-32 px-4 sm:px-6 lg:px-8 overflow-hidden">
         {/* Ambient Glows */}
-        <div className="absolute top-10 left-1/2 -translate-x-1/2 w-[600px] h-[350px] bg-gradient-to-tr from-cyan-600/15 via-blue-600/10 to-transparent blur-[120px] rounded-full pointer-events-none"></div>
-        <div className="absolute -top-20 -right-20 w-96 h-96 bg-emerald-50 blur-[130px] rounded-full pointer-events-none"></div>
+        <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-cyan-400/20 rounded-full blur-[120px] pointer-events-none -z-10"></div>
+        <div className="absolute top-[20%] right-[-5%] w-[400px] h-[400px] bg-purple-400/15 rounded-full blur-[100px] pointer-events-none -z-10"></div>
+        <div className="absolute bottom-[-10%] left-[20%] w-[600px] h-[600px] bg-emerald-400/15 rounded-full blur-[150px] pointer-events-none -z-10"></div>
 
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           {/* Left Column: Copy and CTA */}
@@ -364,11 +387,13 @@ export default function App() {
               <span>Official Enterprise Mobile Companion</span>
             </div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-[1.1] mb-6">
-              Streamline Attendance, Leaves & Payroll in{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-teal-300 to-emerald-400">
-                One App.
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-br from-slate-900 via-slate-800 to-slate-500 tracking-tight leading-[1.1] mb-6 min-h-[140px] sm:min-h-[120px] lg:min-h-[150px]">
+              Streamline <br className="hidden sm:block" />
+              <span key={wordIndex} className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-cyan-600 via-teal-500 to-emerald-500 animate-[fadeInUp_0.5s_ease-out]">
+                {rotatingWords[wordIndex]}
               </span>
+              <br />
+              in One App.
             </h1>
 
             <p className="text-base sm:text-lg text-slate-400 max-w-2xl mx-auto lg:mx-0 mb-8 leading-relaxed">
@@ -380,14 +405,17 @@ export default function App() {
             <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mb-8">
               <button
                 onClick={() => triggerDownloadNotice('Android APK')}
-                className="w-full sm:w-auto flex items-center justify-center gap-3 px-6 py-3.5 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 text-white font-bold text-sm hover:brightness-110 shadow-lg shadow-emerald-500/25 transition-all group"
+                className="w-full sm:w-auto flex items-center justify-center gap-3 px-6 py-3.5 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 text-white font-bold text-sm hover:brightness-110 shadow-xl shadow-emerald-500/30 transition-all group relative overflow-hidden"
               >
-                <Smartphone className="w-5 h-5 text-white" />
-                <div className="text-left">
-                  <div className="text-[10px] leading-tight opacity-80 uppercase tracking-wider font-semibold">
-                    Download for
+                <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full animate-[shimmer_2.5s_linear_infinite]" />
+                <div className="relative z-10 flex items-center justify-center gap-3">
+                  <Smartphone className="w-5 h-5 text-white" />
+                  <div className="text-left">
+                    <div className="text-[10px] leading-tight opacity-80 uppercase tracking-wider font-semibold">
+                      Download for
+                    </div>
+                    <div className="text-sm font-extrabold leading-none">Android APK / Play Store</div>
                   </div>
-                  <div className="text-sm font-extrabold leading-none">Android APK / Play Store</div>
                 </div>
               </button>
 
@@ -435,7 +463,7 @@ export default function App() {
               <div className="absolute inset-0 bg-gradient-to-b from-cyan-500/20 via-emerald-500/10 to-transparent rounded-[50px] blur-2xl -z-10"></div>
 
               {/* Realistic Mobile Device Frame */}
-              <div className="relative bg-slate-200 p-3 rounded-[46px] border-4 border-slate-200 shadow-[0_25px_60px_rgba(0,0,0,0.85)] ring-1 ring-white/10">
+              <div className="relative bg-slate-200 p-3 rounded-[46px] border-4 border-slate-200 shadow-[0_30px_100px_rgba(6,182,212,0.25)] ring-1 ring-white/10">
                 {/* Dynamic Island / Notch */}
                 <div className="absolute top-5 left-1/2 -translate-x-1/2 w-28 h-5 bg-black rounded-full z-30 flex items-center justify-end px-3">
                   <div className="w-2 h-2 rounded-full bg-cyan-900/60 ring-1 ring-cyan-500/40"></div>
