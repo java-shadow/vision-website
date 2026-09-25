@@ -1101,6 +1101,9 @@ export default function App() {
             <a href="#download" className="hover:text-slate-600 transition-colors">
               Download
             </a>
+            <a href="/privacy" className="hover:text-slate-600 transition-colors">
+              Privacy Policy
+            </a>
           </div>
 
           <div>
