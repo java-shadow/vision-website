@@ -125,8 +125,8 @@ export default function PrivacyPolicyPage() {
             <h3 className="text-xl font-bold text-slate-800 mt-8 mb-3">11. Contact Information</h3>
             <p>For technical inquiries or questions directly related to this privacy policy, please reach out to us at:</p>
             <div className="bg-slate-50 p-6 rounded-2xl border border-slate-200 my-6">
-              <p className="font-bold text-slate-900 mb-1">Octavision Privacy Team</p>
-              <p>Email: <a href="mailto:privacy@octavision.in" className="text-cyan-600 hover:underline">privacy@octavision.in</a></p>
+              <p className="font-bold text-slate-900 mb-1">Octavision Team</p>
+              <p>Email: <a href="mailto:info@octavision.in" className="text-cyan-600 hover:underline">info@octavision.in</a></p>
             </div>
             <p className="text-sm text-slate-500 italic">
               (For specific inquiries regarding your employment records, shifts, or payroll data, please contact your company's HR representative directly.)
