@@ -73,6 +73,10 @@ export default function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
   const [downloadToast, setDownloadToast] = useState<string | null>(null);
   
+  const [contactForm, setContactForm] = useState({ name: '', email: '', message: '' });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<{ type: 'success' | 'error' | null, message: string }>({ type: null, message: '' });
+  
   const rotatingWords = ["Attendance", "Leaves", "Payroll", "Workflows", "Shifts"];
   const [wordIndex, setWordIndex] = useState(0);
 
@@ -101,6 +105,41 @@ export default function App() {
     setTimeout(() => {
       setDownloadToast(null);
     }, 3500);
+  };
+
+  const handleContactSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    // Strict manual validation for mandatory fields
+    if (!contactForm.name.trim() || !contactForm.email.trim() || !contactForm.message.trim()) {
+      setSubmitStatus({ type: 'error', message: 'Name, Email, and Message are mandatory fields.' });
+      setTimeout(() => setSubmitStatus({ type: null, message: '' }), 4000);
+      return;
+    }
+
+    setIsSubmitting(true);
+    setSubmitStatus({ type: null, message: '' });
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(contactForm),
+      });
+
+      if (res.ok) {
+        setSubmitStatus({ type: 'success', message: 'Message sent successfully! We will get back to you soon.' });
+        setContactForm({ name: '', email: '', message: '' });
+      } else {
+        const data = await res.json();
+        setSubmitStatus({ type: 'error', message: data.error || 'Something went wrong. Please try again.' });
+      }
+    } catch (error) {
+      setSubmitStatus({ type: 'error', message: 'Network error. Please try again later.' });
+    } finally {
+      setIsSubmitting(false);
+      setTimeout(() => setSubmitStatus({ type: null, message: '' }), 5000);
+    }
   };
 
   interface AppModule {
@@ -1062,17 +1101,60 @@ export default function App() {
       </section>
 
       {}
-      <section id="contact" className="py-12 border-t border-slate-200 bg-slate-100 px-4 sm:px-6 lg:px-8 text-center">
+      <section id="contact" className="py-20 border-t border-slate-200 bg-slate-50 px-4 sm:px-6 lg:px-8 text-center relative overflow-hidden">
+        {/* Soft background elements */}
+        <div className="absolute top-0 right-0 w-96 h-96 bg-cyan-500/5 blur-3xl rounded-full pointer-events-none -z-10"></div>
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-emerald-500/5 blur-3xl rounded-full pointer-events-none -z-10"></div>
+
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-xl font-bold text-slate-900 mb-6">Need Assistance? Contact Us</h2>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-6 text-slate-600">
-            <div className="flex items-center gap-3 bg-white px-6 py-4 rounded-2xl border border-slate-200/80 shadow-md hover:border-cyan-300 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer">
-              <Mail className="w-5 h-5 text-cyan-600" />
-              <a href="mailto:info@octavision.in" className="font-medium hover:text-slate-900 transition-colors tracking-wide">info@octavision.in</a>
+          <h2 className="text-3xl font-extrabold text-slate-900 mb-4 tracking-tight">Need Assistance? Contact Us</h2>
+          <p className="text-slate-500 mb-10 max-w-xl mx-auto">Have a question or need support with the Vision App? Send us a message and our team will get back to you shortly.</p>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div className="lg:col-span-2">
+              <form onSubmit={handleContactSubmit} className="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200/80 shadow-xl shadow-slate-200/50 text-left">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
+                  <div>
+                    <label htmlFor="name" className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Name <span className="text-red-500">*</span></label>
+                    <input type="text" id="name" required placeholder="John Doe" value={contactForm.name} onChange={(e) => setContactForm({...contactForm, name: e.target.value})} className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/20 outline-none transition-all text-sm" />
+                  </div>
+                  <div>
+                    <label htmlFor="email" className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Email <span className="text-red-500">*</span></label>
+                    <input type="email" id="email" required placeholder="john@example.com" value={contactForm.email} onChange={(e) => setContactForm({...contactForm, email: e.target.value})} className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/20 outline-none transition-all text-sm" />
+                  </div>
+                </div>
+                <div className="mb-6">
+                  <label htmlFor="message" className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Message <span className="text-red-500">*</span></label>
+                  <textarea id="message" required rows={4} placeholder="How can we help you?" value={contactForm.message} onChange={(e) => setContactForm({...contactForm, message: e.target.value})} className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/20 outline-none transition-all text-sm resize-none"></textarea>
+                </div>
+
+                <div className="flex items-center justify-between">
+                  <div className="flex-1 mr-4">
+                    {submitStatus.type === 'success' && <p className="text-sm text-emerald-600 font-medium">{submitStatus.message}</p>}
+                    {submitStatus.type === 'error' && <p className="text-sm text-red-500 font-medium">{submitStatus.message}</p>}
+                  </div>
+                  <button type="submit" disabled={isSubmitting} className="flex items-center gap-2 px-6 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm transition-all disabled:opacity-70 disabled:cursor-not-allowed">
+                    {isSubmitting ? 'Sending...' : 'Send Message'} <ArrowRight className="w-4 h-4" />
+                  </button>
+                </div>
+              </form>
             </div>
-            <div className="flex items-center gap-3 bg-white px-6 py-4 rounded-2xl border border-slate-200/80 shadow-md hover:border-emerald-300 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer">
-              <Phone className="w-5 h-5 text-emerald-600" />
-              <a href="tel:+918527848873" className="font-medium hover:text-slate-900 transition-colors tracking-wide">+91 8527848873</a>
+
+            <div className="flex flex-col gap-4">
+              <div className="flex flex-col items-center justify-center bg-white p-6 rounded-3xl border border-slate-200/80 shadow-md h-full hover:border-cyan-300 transition-colors">
+                <div className="w-12 h-12 bg-cyan-50 text-cyan-600 rounded-2xl flex items-center justify-center mb-4">
+                  <Mail className="w-5 h-5" />
+                </div>
+                <div className="text-xs text-slate-500 font-semibold uppercase tracking-wider mb-1">Email Us</div>
+                <a href="mailto:info@octavision.in" className="text-slate-900 font-bold hover:text-cyan-600 transition-colors">info@octavision.in</a>
+              </div>
+              <div className="flex flex-col items-center justify-center bg-white p-6 rounded-3xl border border-slate-200/80 shadow-md h-full hover:border-emerald-300 transition-colors">
+                <div className="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center mb-4">
+                  <Phone className="w-5 h-5" />
+                </div>
+                <div className="text-xs text-slate-500 font-semibold uppercase tracking-wider mb-1">Call Us</div>
+                <a href="tel:+918527848873" className="text-slate-900 font-bold hover:text-emerald-600 transition-colors">+91 8527848873</a>
+              </div>
             </div>
           </div>
         </div>
